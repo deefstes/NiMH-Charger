@@ -1,0 +1,90 @@
+
+(rules PCB NiMH Charger
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 155)
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.2)
+    )
+  )
+  (rule
+    (width 400.0)
+    (clear 150.2)
+    (clear 200.0 (type smd_to_turn_gap))
+    (clear 250.2 (type default_Power))
+    (clear 37.6 (type smd_smd))
+    (clear 250.2 (type smd_Power))
+    (clear 250.2 (type "kicad_default"_Power))
+    (clear 250.2 (type Power_Power))
+  )
+  (padstack "Via[0-1]_600:400_um"
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:400_um" "Via[0-1]_600:400_um" default
+  )
+  (via 
+    "Via[0-1]_600:400_um-kicad_default" "Via[0-1]_600:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_600:400_um-Power" "Via[0-1]_600:400_um" Power
+  )
+  (via_rule
+    default "Via[0-1]_600:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:400_um-kicad_default"
+  )
+  (via_rule
+    Power "Via[0-1]_600:400_um-Power"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 400.0)
+    )
+    (circuit 
+      (use_layer B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "Net-(C1-Pad1)" "Net-(C2-Pad1)" "Net-(C3-Pad1)" "Net-(C4-Pad1)" "Net-(R1-Pad2)" "Net-(R2-Pad2)" "Net-(R3-Pad2)" "Net-(R4-Pad2)"
+    "Net-(JP1-Pad1)"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 400.0)
+    )
+    (circuit 
+      (use_layer B.Cu)
+    )
+  )
+  (class Power
+    /GND "Net-(BT2-Pad1)" "Net-(BT2-Pad2)" "Net-(BT3-Pad1)" "Net-(BT3-Pad2)" "Net-(BT4-Pad1)" "Net-(BT4-Pad2)" "Net-(BT5-Pad1)"
+    "Net-(BT5-Pad2)" /VIN "Net-(JP2-Pad2)"
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer B.Cu)
+    )
+  )
+)
